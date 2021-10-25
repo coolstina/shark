@@ -79,9 +79,6 @@ hello world
 
 - [@helloshaohua](https://www.github.com/helloshaohua)
   
-## Feedback
-
-If you have any feedback, please reach out to us at fake@fake.com
 
   
 ## License
