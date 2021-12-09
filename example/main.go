@@ -3,16 +3,16 @@ package main
 import (
 	"fmt"
 
-	cobrax "github.com/coolstina/cobrasuper"
+	"github.com/coolstina/cobrasuper"
 	"github.com/spf13/cobra"
 )
 
 func main() {
-	command := cobrax.NewCommand(
-		cobrax.WithUse("hello"),
-		cobrax.WithLong("Say hello"),
-		cobrax.WithLong("Execute this command output say hello"),
-		cobrax.WithRun(func(cmd *cobra.Command, args []string) {
+	command := cobrasuper.NewCommand(
+		cobrasuper.WithUse("hello"),
+		cobrasuper.WithLong("Say hello"),
+		cobrasuper.WithLong("Execute this command output say hello"),
+		cobrasuper.WithRun(func(cmd *cobra.Command, args []string) {
 			fmt.Printf("hello world")
 		}),
 	)
