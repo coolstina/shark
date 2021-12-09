@@ -16,6 +16,6 @@ package cobrax
 
 import "github.com/spf13/pflag"
 
-type Cobraxer interface {
+type CobraSuperior interface {
 	SetFlags(set func(flags *pflag.FlagSet))
 }

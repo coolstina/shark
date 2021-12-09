@@ -16,26 +16,35 @@ package cobrax
 
 import (
 	"errors"
+	"sync"
 
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
-type Command struct {
-	Cobra *cobra.Command
+type Command = *cobra.Command
+
+type CobraSuper struct {
+	command Command
+	access  sync.Mutex
 }
 
-func (c *Command) SetFlags(set func(flags *pflag.FlagSet)) {
-	flags := c.Cobra.Flags()
-	set(flags)
+func (super *CobraSuper) Command() Command {
+	return super.command
 }
 
-// NewCommand Command is the cobra command structure wrapper.
-func NewCommand(ops ...Option) *Command {
+func (super *CobraSuper) SetFlags(set func(flags *pflag.FlagSet)) {
+	super.access.Lock()
+	defer super.access.Unlock()
+	set(super.Command().Flags())
+}
+
+// NewCommand CobraSuper is the cobra command structure wrapper.
+func NewCommand(ops ...Option) *CobraSuper {
 	options := options{}
 
 	if len(ops) == 0 {
-		panic(errors.New("cobrax: options value invalid"))
+		panic(errors.New("cobrasuper: options value invalid"))
 	}
 
 	for _, o := range ops {
@@ -49,5 +58,5 @@ func NewCommand(ops ...Option) *Command {
 		Run:   options.run,
 	}
 
-	return &Command{Cobra: command}
+	return &CobraSuper{command: command}
 }

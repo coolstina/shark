@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/coolstina/cobrax"
+	cobrax "github.com/coolstina/cobrasuper"
 	"github.com/spf13/cobra"
 )
 
@@ -17,7 +17,7 @@ func main() {
 		}),
 	)
 
-	if err := command.Cobra.Execute(); err != nil {
+	if err := command.Command().Execute(); err != nil {
 		fmt.Printf("%s\n", err.Error())
 	}
 }

@@ -18,7 +18,6 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/stretchr/testify/suite"
 )
@@ -29,7 +28,7 @@ func TestCommandSuite(t *testing.T) {
 
 type CommandSuite struct {
 	suite.Suite
-	Command *Command
+	Command *CobraSuper
 }
 
 func (suite *CommandSuite) BeforeTest(suiteName, testName string) {
@@ -37,7 +36,7 @@ func (suite *CommandSuite) BeforeTest(suiteName, testName string) {
 		WithUse("hello"),
 		WithLong("Say hello"),
 		WithLong("Execute this command output say hello"),
-		WithRun(func(cmd *cobra.Command, args []string) {
+		WithRun(func(cmd Command, args []string) {
 			fmt.Printf("hello world")
 		}),
 	)
@@ -48,5 +47,5 @@ func (suite *CommandSuite) TestCommand_SetFlags() {
 		flags.StringP("hello", "l", "hello world", "Execute this command output say hello message")
 	})
 
-	fmt.Printf("%+v\n", suite.Command.Cobra)
+	fmt.Printf("%+v\n", suite.Command.command)
 }
