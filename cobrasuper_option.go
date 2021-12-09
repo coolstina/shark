@@ -14,16 +14,14 @@
 
 package cobrax
 
-import "github.com/spf13/cobra"
-
 type Option interface {
 	apply(*options)
 }
 
-type RunFunc func(cmd *cobra.Command, args []string)
+type RunFunc func(cmd Command, args []string)
 
 type options struct {
-	use   string  // Command
+	use   string  // CobraSuper
 	short string  // Short information.
 	long  string  // Long information.
 	run   RunFunc // Run command handle

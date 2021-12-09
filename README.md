@@ -7,7 +7,7 @@
 Install cobrax with go module.
 
 ```bash
- go get github.com/coolstina/cobrax
+ go get github.com/coolstina/cobrasuper
 ```
     
 ## Features
@@ -26,7 +26,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/coolstina/cobrax"
+	"github.com/coolstina/cobrasuper"
 	"github.com/spf13/cobra"
 )
 

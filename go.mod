@@ -1,4 +1,4 @@
-module github.com/coolstina/cobrax
+module github.com/coolstina/cobrasuper
 
 go 1.16
 
