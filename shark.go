@@ -12,39 +12,41 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package cobrasuper
+package shark
 
 import (
 	"errors"
+	"github.com/spf13/pflag"
 	"sync"
 
 	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
 
 type Command = *cobra.Command
 
-type CobraSuper struct {
+type FlagSet func(flags *pflag.FlagSet)
+
+type Shark struct {
 	command Command
 	access  sync.Mutex
 }
 
-func (super *CobraSuper) Command() Command {
+func (super *Shark) Command() Command {
 	return super.command
 }
 
-func (super *CobraSuper) SetFlags(set func(flags *pflag.FlagSet)) {
+func (super *Shark) SetFlags(set FlagSet) {
 	super.access.Lock()
 	defer super.access.Unlock()
 	set(super.Command().Flags())
 }
 
-// NewCommand CobraSuper is the cobra command structure wrapper.
-func NewCommand(ops ...Option) *CobraSuper {
+// NewShark Shark is the cobra command structure wrapper.
+func NewShark(ops ...Option) *Shark {
 	options := options{}
 
 	if len(ops) == 0 {
-		panic(errors.New("cobrasuper: options value invalid"))
+		panic(errors.New("shark: options value invalid"))
 	}
 
 	for _, o := range ops {
@@ -58,5 +60,5 @@ func NewCommand(ops ...Option) *CobraSuper {
 		Run:   options.run,
 	}
 
-	return &CobraSuper{command: command}
+	return &Shark{command: command}
 }

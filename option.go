@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package cobrasuper
+package shark
 
 type Option interface {
 	apply(*options)
@@ -21,7 +21,7 @@ type Option interface {
 type RunFunc func(cmd Command, args []string)
 
 type options struct {
-	use   string  // CobraSuper
+	use   string  // Shark
 	short string  // Short information.
 	long  string  // Long information.
 	run   RunFunc // Run command handle
