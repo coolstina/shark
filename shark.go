@@ -16,13 +16,19 @@ package shark
 
 import (
 	"errors"
-	"github.com/spf13/pflag"
 	"sync"
 
 	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 )
 
+var CheckErr = cobra.CheckErr
+var EnableCommandSorting = func(enabled bool) {
+	cobra.EnableCommandSorting = enabled
+}
+
 type Command = *cobra.Command
+type CompletionOptions = cobra.CompletionOptions
 type FlagSet = *pflag.FlagSet
 type FlagSetFunc = func(flags FlagSet)
 

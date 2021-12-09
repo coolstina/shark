@@ -21,10 +21,11 @@ type Option interface {
 type RunFunc func(cmd Command, args []string)
 
 type options struct {
-	use   string  // Shark
-	short string  // Short information.
-	long  string  // Long information.
-	run   RunFunc // Run command handle
+	use               string  // Shark
+	short             string  // Short information.
+	long              string  // Long information.
+	run               RunFunc // Run command handle
+	completionOptions CompletionOptions
 }
 
 type optionFunc func(*options)
@@ -58,5 +59,12 @@ func WithLong(long string) Option {
 func WithRun(run RunFunc) Option {
 	return optionFunc(func(ops *options) {
 		ops.run = run
+	})
+}
+
+// WithCompletionOptions specify completion options.
+func WithCompletionOptions(completionOptions CompletionOptions) Option {
+	return optionFunc(func(ops *options) {
+		ops.completionOptions = completionOptions
 	})
 }
