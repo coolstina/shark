@@ -23,8 +23,8 @@ import (
 )
 
 type Command = *cobra.Command
-
-type FlagSet func(flags *pflag.FlagSet)
+type FlagSet = *pflag.FlagSet
+type FlagSetFunc = func(flags FlagSet)
 
 type Shark struct {
 	command Command
@@ -35,7 +35,7 @@ func (super *Shark) Command() Command {
 	return super.command
 }
 
-func (super *Shark) SetFlags(set FlagSet) {
+func (super *Shark) SetFlags(set FlagSetFunc) {
 	super.access.Lock()
 	defer super.access.Unlock()
 	set(super.Command().Flags())
