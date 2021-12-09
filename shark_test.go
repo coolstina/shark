@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package cobrasuper
+package shark
 
 import (
 	"fmt"
@@ -28,11 +28,11 @@ func TestCommandSuite(t *testing.T) {
 
 type CommandSuite struct {
 	suite.Suite
-	Command *CobraSuper
+	Command *Shark
 }
 
 func (suite *CommandSuite) BeforeTest(suiteName, testName string) {
-	suite.Command = NewCommand(
+	suite.Command = NewShark(
 		WithUse("hello"),
 		WithLong("Say hello"),
 		WithLong("Execute this command output say hello"),

@@ -1,4 +1,4 @@
-module github.com/coolstina/cobrasuper
+module github.com/coolstina/shark
 
 go 1.16
 
