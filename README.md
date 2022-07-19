@@ -1,5 +1,4 @@
-
-![Logo](assets/banner/cobrax.jpg)
+# shark
 
     
 ## Installation
